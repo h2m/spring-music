@@ -2,10 +2,7 @@ package org.cloudfoundry.samples.music.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Album {
@@ -16,7 +13,10 @@ public class Album {
     private String id;
 
     private String title;
-    private String artist;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    private Artist artist;
+
     private String releaseYear;
     private String genre;
     private int trackCount;
@@ -25,7 +25,7 @@ public class Album {
     public Album() {
     }
 
-    public Album(String title, String artist, String releaseYear, String genre) {
+    public Album(String title, Artist artist, String releaseYear, String genre) {
         this.title = title;
         this.artist = artist;
         this.releaseYear = releaseYear;
@@ -48,11 +48,11 @@ public class Album {
         this.title = title;
     }
 
-    public String getArtist() {
+    public Artist getArtist() {
         return artist;
     }
 
-    public void setArtist(String artist) {
+    public void setArtist(Artist artist) {
         this.artist = artist;
     }
 

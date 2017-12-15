@@ -2,6 +2,7 @@ package org.cloudfoundry.samples.music.repositories.redis;
 
 import org.cloudfoundry.samples.music.domain.Album;
 import org.cloudfoundry.samples.music.domain.RandomIdGenerator;
+import org.cloudfoundry.samples.music.repositories.AlbumRepository;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.repository.CrudRepository;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class RedisAlbumRepository implements CrudRepository<Album, String> {
+public class RedisAlbumRepository implements AlbumRepository {
     public static final String ALBUMS_KEY = "albums";
 
     private final RandomIdGenerator idGenerator;
